@@ -73,7 +73,7 @@
 export default {
   head() {
     return {
-      title: $nuxt.$route.name
+      title: this.$route.name
     }
   }
 }
