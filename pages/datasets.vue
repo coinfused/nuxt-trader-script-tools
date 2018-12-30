@@ -1,5 +1,5 @@
 <template>
-  <div>Dataset</div>
+  <div/>
 </template>
 
 <script>

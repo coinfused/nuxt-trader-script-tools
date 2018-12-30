@@ -39,6 +39,9 @@ module.exports = {
     // Doc: https://buefy.github.io/#/documentation
     'nuxt-buefy'
   ],
+
+
+
   /*
   ** Axios module configuration
   */
@@ -53,6 +56,7 @@ module.exports = {
     /*
     ** You can extend webpack config here
     */
+   /*
     extend(config, ctx) {
       // Run ESLint on save
       if (ctx.isDev && ctx.isClient) {
@@ -64,5 +68,6 @@ module.exports = {
         })
       }
     }
+  */
   }
 }
