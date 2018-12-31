@@ -5,7 +5,7 @@
         <div class="navbar-brand">
           <nuxt-link
             class="navbar-item has-text-weight-bold"
-            to="/index"
+            to="/"
           >
             trader.script.tools
           </nuxt-link>
@@ -54,18 +54,7 @@
         </div>
       </div>
     </nav>
-
-    <section class="main-content columns">
-
-      <div class="container column is-12">
-        <section class="section">
-          <div class="columns is-mobile">
-            <nuxt />
-          </div>
-        </section>
-      </div>
-
-    </section>
+    <nuxt />
   </div>
 </template>
 
