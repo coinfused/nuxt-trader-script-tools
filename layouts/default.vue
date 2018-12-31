@@ -1,6 +1,6 @@
 <template>
   <div>
-    <nav class="navbar">
+    <nav class="navbar is-light">
       <div class="container">
         <div class="navbar-brand">
           <nuxt-link
@@ -47,7 +47,7 @@
           <div class="navbar-end">
             <div class="navbar-item">
               <div class="buttons">
-                <a class="button is-light">Log in</a>
+                <a class="button">Log in</a>
               </div>
             </div>
           </div>

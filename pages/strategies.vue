@@ -5,15 +5,15 @@
       </div>
       <div class="level-right">
         <div class="level-item">
-          <div id="indicators-list" class="control">
+          <div class="control">
             <div class="buttons has-addons">
               <button
-                v-for="key in defaultIndicatorsList"
+                v-for="key in ['BOLL', 'CCI', 'MACD', 'DMA']"
                 :key="key"
                 type="submit"
                 @click="add(key)"
                 :value="key"
-                class="button is-narrow"
+                class="button"
               >
                 <span>{{ key }}</span>
               </button>
@@ -23,24 +23,24 @@
       </div>
     </nav>
     <template v-for="(indicator,index) in indicators">
-      <div class="field is-horizontal" :key="index" :id="index">
-        <div class="field-label is-normal">
+      <div class="field is-horizontal" :key="index">
+        <div class="field-label is-normal is-narrow">
           <label class="label">{{ indicator.name }}</label>
         </div>
 
         <div class="field-body">
-          <div class="field" v-for="(setting,i) in activeSettings[index]" :key="i" :id="i" :name="setting.button">
+          <div class="field" v-for="(setting,i) in activeSettings[index]" :key="i">
             <div class="field has-addons">
               <div class="control">
-                <button class="button is-static">{{ setting.button }}</button>
+                <button class="button is-static">{{ setting.key }}</button>
               </div>
               <div class="control is-expanded">
-                <input type="text" :placeholder="setting.placeholder" class="input is-fullwidth">
+                <input class="input is-fullwidth" type="text" :placeholder="setting.default" v-model.number="setting.value">
               </div>
             </div>
           </div>
 
-          <div class="field" v-for="(n) in  (3 - activeSettings[index].length)" :key="n+activeSettings[index].length-1" :id="n+activeSettings[index].length-1">
+          <div class="field" v-for="(n) in (3 - activeSettings[index].length)" :key="n+activeSettings[index].length-1">
             <div class="control is-expanded">
               <input type="text" disabled class="input">
             </div>
@@ -49,8 +49,8 @@
           <div class="field">
             <div class="control is-expanded">
               <div class="select">
-                <select size="1">
-                  <option v-for="(val) in ohlcv" :key="val" :value="val" :name="ohlcv">{{ val }}</option>
+                <select size="1" v-model="indicator.ohlcv">
+                  <option v-for="(val) in ['close', 'open', 'high', 'low', 'volume']" :key="val" :value="val">{{ val }}</option>
                 </select>
               </div>
             </div>
@@ -59,16 +59,16 @@
           <div class="field">
             <div class="control is-expanded">
               <div class="select">
-                <select size="1">
+                <select size="1" name="timeframe" v-model="indicator.timeframe">
                   <option selected="true" disabled="true">timeframe</option>
-                  <option v-for="(tf) in timeframes" :key="tf" :value="tf" name="timeframe">{{ tf }}</option>
+                  <option v-for="(tf) in ['1m', '5m', '15m', '30m', '1h', '2h', '4h', '1d', '7d']" :key="tf" :value="tf">{{ tf }}</option>
                 </select>
               </div>
             </div>
           </div>
 
           <div class="field">
-            <button class="button" @click="remove(index)">
+            <button class="button" @click="remove(index)" name="removeIndicator" :id="'remove'+index">
               <span class="icon is-small">
                 <i class="fa-trash-alt" aria-hidden="true"/>
               </span>
@@ -84,9 +84,6 @@
 export default {
   data(context) {
     return {
-      ohlcv: ['close', 'open', 'high', 'low', 'volume'],
-      timeframes: ['1m', '5m', '15m', '30m', '1h', '2h', '4h', '1d', '7d'],
-      defaultIndicatorsList: ['BOLL', 'CCI', 'MACD', 'DMA'],
       indicators: []
     }
   },
@@ -117,13 +114,21 @@ export default {
       )
 
       let i = 0
-      let indicator = { name: name, settings: [] }
+      let indicator = {
+        name: name,
+        ohlcv: "close",
+        timeframe: "timeframe",
+        settings: []
+      }
 
       while (i <= 2) {
-        indicator.settings.push({
-          button: keys[i] ? keys[i] : null,
-          placeholder: placeholders[i] ? placeholders[i] : null
-        })
+        if (keys[i]) {
+          indicator.settings.push({
+            key: keys[i] ? keys[i] : null,
+            default: placeholders[i] ? placeholders[i] : null,
+            value: null
+          })
+        }
         i++
       }
       this.indicators.push(indicator)
@@ -138,7 +143,7 @@ export default {
     activeSettings: function() {
       return this.indicators.map(function(indicator, index) {
         return indicator.settings.filter(function(setting) {
-          return setting.button
+          return setting.key
         })
       })
     }
