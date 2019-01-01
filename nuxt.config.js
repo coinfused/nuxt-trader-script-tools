@@ -1,4 +1,5 @@
 import * as pkg from './package'
+
 module.exports = {
   mode: 'universal',
 
@@ -40,8 +41,9 @@ module.exports = {
     'nuxt-buefy'
   ],
 
-
-
+  'nuxt-buefy': {
+    defaultIconPack: 'outline'
+  },
   /*
   ** Axios module configuration
   */
