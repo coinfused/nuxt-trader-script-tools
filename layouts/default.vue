@@ -1,13 +1,16 @@
 <template>
   <div>
-    <nav class="navbar is-light">
+    <nav class="navbar">
       <div class="container">
         <div class="navbar-brand">
           <nuxt-link
             class="navbar-item has-text-weight-bold"
             to="/"
           >
-            trader.script.tools
+            <div class="tags has-addons">
+              <span class="tag is-dark has-text-weight-bold">trader.script.tools</span>
+              <span class="tag is-light is-italic">v0.1 alpha</span>
+            </div>
           </nuxt-link>
           <span
             class="navbar-burger burger"
@@ -22,7 +25,7 @@
           id="navbarMenuHeroC"
           class="navbar-menu"
         >
-          <div class="navbar-start">
+          <div class="navbar-end">
             <nuxt-link
               class="navbar-item"
               to="/datasets"
@@ -44,6 +47,7 @@
               to="/live"
             >Live Trading</nuxt-link>
           </div>
+          <!--
           <div class="navbar-end">
             <div class="navbar-item">
                 <b-dropdown position="is-bottom-left">
@@ -85,11 +89,20 @@
  
             </div>
           </div>
+          -->
         </div>
       </div>
     </nav>
-    <nuxt />
+    <nuxt/>
+    <footer class="footer">
+  <div class="content has-text-centered">
+    <p>
+      <strong>Warning:</strong> by using this tool you will burn your portfolio.
+    </p>
   </div>
+</footer>
+  </div>
+  
 </template>
 
 <script>

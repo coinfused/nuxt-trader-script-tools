@@ -13,19 +13,32 @@
     "precommit": "npm run lint"
   },
   "dependencies": {
+    "@nuxtjs/axios": "^5.0.0",
+    "aws-sdk": "^2.384.0",
+    "bfx-hf-indicators": "github:bitfinexcom/bfx-hf-indicators",
+    "child_process": "^1.0.2",
     "cross-env": "^5.2.0",
+    "fs": "0.0.1-security",
+    "lodash": "^4.17.11",
+    "net": "^1.0.2",
     "nuxt": "^2.0.0",
     "nuxt-buefy": "^0.2.1",
-    "@nuxtjs/axios": "^5.0.0"
+    "plotly.js-finance-dist": "^1.43.1",
+    "technicalindicators": "^2.0.7",
+    "tls": "0.0.1",
+    "tulind": "^0.8.13",
+    "vue-no-ssr": "^1.1.1"
   },
   "devDependencies": {
-    "nodemon": "^1.11.0",
     "babel-eslint": "^8.2.1",
     "eslint": "^5.0.1",
-    "eslint-loader": "^2.0.0",
-    "eslint-plugin-vue": "^4.0.0",
     "eslint-config-prettier": "^3.1.0",
+    "eslint-loader": "^2.0.0",
     "eslint-plugin-prettier": "2.6.2",
-    "prettier": "1.14.3"
+    "eslint-plugin-vue": "^4.0.0",
+    "node-sass": "^4.11.0",
+    "nodemon": "^1.11.0",
+    "prettier": "1.14.3",
+    "sass-loader": "^7.1.0"
   }
 }
