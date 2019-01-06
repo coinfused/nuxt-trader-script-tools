@@ -40,7 +40,7 @@
 <script>
 
 import * as _ from 'lodash'
-import * as TI from 'technicalindicators'
+//import * as TI from 'technicalindicators'
 import Plotly from 'plotly.js-finance-dist'
 import fromTo from '../components/backtests/fromTo'
 import exchangeSelect from '../components/backtests/exchangeSelect'
