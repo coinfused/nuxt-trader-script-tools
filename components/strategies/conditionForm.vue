@@ -1,5 +1,5 @@
 <template>
-  <div class="columns is-11">
+  <div class="columns">
     <div class="column is-2">
       <b-field grouped>
         <p class="control">
@@ -56,7 +56,12 @@
             <option v-for="(el,i) in OHLCV" :key="'rightCondOHLCV'+index+i">{{ el }}</option>
           </optgroup>
         </b-select>
-        <b-input placeholder="1.00" v-model="moltiplicator"/>
+        <div class="control">
+          <button class="button is-static">*</button>
+        </div>
+        <div class="control">
+          <input class="input" size="1" placeholder="1.00" v-model="moltiplicator">
+        </div>
       </b-field>
     </div>
   </div>
@@ -135,8 +140,11 @@ export default {
     },
     indicatorsNames: {
       get() {
-        return this.$store.state.current.indicators.map(function(i) {
-          return i.name
+        return this.$store.state.current.indicators.map(function(el, elIndex) {
+          return (
+            el.name ||
+            'Unnamed indicator at position ' + (elIndex + 1).toString()
+          )
         })
       }
     },

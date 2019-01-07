@@ -33,7 +33,7 @@
               <input class="input" type="text" placeholder="Strategy description" v-model="name">
             </p>
             <p class="control">
-              <a class="button is-info" @click="saveStrategy">Save</a>
+              <a class="button" @click="saveStrategy">Save</a>
             </p>
           </div>
         </b-tab-item>

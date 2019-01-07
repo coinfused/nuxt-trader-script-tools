@@ -2,3 +2,11 @@
   body {
     font-family: 'Inconsolata', sans-serif;
   }
+
+  .select:not(.is-multiple):not(.is-loading)::after {
+    border-color: #7c7c7c;
+}
+
+.is-active:hover {
+  border-color: #7c7c7c;
+}

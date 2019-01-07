@@ -115,7 +115,7 @@ export const mutations = {
 
   newIndicator(state) {
     state.current.indicators.push({
-      name: 'indicator_' + state.current.indicators.length,
+      name: null,
       settings: {
         args: []
       },
@@ -125,7 +125,7 @@ export const mutations = {
 
   newCondition(state) {
     state.current.conditions.push({
-      name: 'condition_' + state.current.conditions.length,
+      name: null,
       leftCond: null,
       operators: null,
       rightCond: null,
@@ -135,7 +135,7 @@ export const mutations = {
 
   newAction(state) {
     state.current.actions.push({
-      name: 'action_' + state.current.actions.length,
+      name: null,
       direction: null,
       size: null,
       conditions: []

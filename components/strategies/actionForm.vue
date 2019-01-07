@@ -1,6 +1,6 @@
 <template>
   <div class="columns">
-    <div class="column">
+    <div class="column is-2">
       <b-field grouped>
         <p class="control">
           <button class="button" @click="remove">
@@ -37,7 +37,7 @@
       <b-field>
         <b-taginput
           v-model="conditions"
-          :data="currentStrategy.conditions || []"
+          :data="filteredTags"
           autocomplete
           field="name"
           placeholder="Select the trigging conditions"
@@ -58,19 +58,21 @@ export default {
   data() {
     return {
       isSelectOnly: true,
-      filteredTags: this.conditions
+      filteredTags: this.$store.state.current.conditions.filter(function(el) {return el.name})
     }
   },
   methods: {
     getFilteredTags(text) {
-      this.filteredTags = this.conditions.filter(option => {
+      this.filteredTags = this.$store.state.current.conditions
+      .filter(function(option) {
         return (
+          option.name != null &&
           option.name
             .toString()
             .toLowerCase()
-            .indexOf(text.toLowerCase()) >= 0
+            .indexOf(this.text.toLowerCase()) >= 0
         )
-      })
+      }, {text: text})
     },
     remove() {
       this.$store.commit('removeFromStrategy', {
@@ -85,7 +87,7 @@ export default {
         return this.$store.state.current.actions[this.index].name
       },
       set(value) {
-        this.$store.commit('updateCurrentStrategy', {
+        this.$store.commit('updateStrategy', {
           section: 'actions',
           target: 'name',
           value: value,
@@ -98,7 +100,7 @@ export default {
         return this.$store.state.current.actions[this.index].direction
       },
       set(value) {
-        this.$store.commit('updateCurrentStrategy', {
+        this.$store.commit('updateStrategy', {
           section: 'actions',
           target: 'direction',
           value: value,
@@ -111,7 +113,7 @@ export default {
         return this.$store.state.current.actions[this.index].size
       },
       set(value) {
-        this.$store.commit('updateCurrentStrategy', {
+        this.$store.commit('updateStrategy', {
           section: 'actions',
           target: 'size',
           value: value,
@@ -121,10 +123,10 @@ export default {
     },
     conditions: {
       get() {
-        return this.$store.state.current.actions[this.index].conditions
+        return this.$store.state.current.actions[this.index].conditions.name
       },
       set(value) {
-        this.$store.commit('updateCurrentStrategy', {
+        this.$store.commit('updateStrategy', {
           section: 'actions',
           target: 'conditions',
           value: value,

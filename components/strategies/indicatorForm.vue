@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="columns">
-      <div class="column">
+      <div class="column is-2">
         <b-field grouped>
           <p class="control">
             <button class="button" @click="remove">
@@ -10,18 +10,19 @@
               </span>
             </button>
           </p>
-          <b-input placeholder="Indicator Name" type="text" v-model="name"></b-input>
-          <b-select placeholder="tf" v-model="timeframe" expanded>
-            <option
-              v-for="(tf,i) in timeframes"
-              :key="'tf'+index+i"
-              :native-value="tf"
-            >{{ tf.slug }}</option>
-          </b-select>
+          <b-input placeholder="Indicator Name" type="text" v-model="name" expanded/>
         </b-field>
       </div>
 
       <div class="column">
+        <b-field>
+        <b-select placeholder="tf" v-model="timeframe" expanded>
+          <option v-for="(tf,i) in timeframes" :key="'tf'+index+i" :native-value="tf">{{ tf.slug }}</option>
+        </b-select>
+        </b-field>
+      </div>
+
+      <div class="column is-8">
         <b-field>
           <b-select placeholder="Indicator Types" v-model="settings" expanded>
             <option
@@ -39,7 +40,7 @@
                 <button class="button is-static">{{ arg.label}}</button>
               </div>
               <div class="control is-expanded">
-                <input class="input" size="1" :placeholder="arg.default" v-model="arg.value">
+                <input class="input" size="1" :placeholder="arg.default" v-model="arg.value"/>
               </div>
             </div>
           </div>
