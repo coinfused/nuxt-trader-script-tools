@@ -15,8 +15,8 @@
           <input class="input" v-model="request.dataset.market" type="text" placeholder="market">
         </div>
       </div>
-      <exchangeSelect v-model="request.dataset.exchange"></exchangeSelect>
-      <from-to></from-to>
+      <tst-exchange-select v-model="request.dataset.exchange"/>
+      <tst-from-to/>
       <div class="field is-grouped is-right">
         <p class="control">
           <a class="button" @click="runLocal">Run locally</a>
@@ -40,15 +40,14 @@
 <script>
 
 import * as _ from 'lodash'
-//import * as TI from 'technicalindicators'
 import Plotly from 'plotly.js-finance-dist'
-import fromTo from '../components/backtests/fromTo'
-import exchangeSelect from '../components/backtests/exchangeSelect'
+import fromTo from '~/components/app/backtests/new/fromTo'
+import exchangeSelect from '~/components/app/backtests/new/exchangeSelect'
 
 export default {
   components: {
-    fromTo,
-    exchangeSelect
+    'tst-from-to': fromTo,
+    'tst-exchange-select': exchangeSelect
   },
   data() {
     return {

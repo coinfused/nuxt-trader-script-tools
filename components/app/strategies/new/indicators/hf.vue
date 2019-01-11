@@ -11,7 +11,6 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import * as bfx from 'bfx-hf-indicators'
 
 export default {
   props: ['index'],
@@ -48,6 +47,7 @@ export default {
       }
     }
   },
-  ...mapGetters(['bfxs', 'currentStrategy', 'strategies', 'OHLCV', 'timeframes'])
+  ...mapGetters(['hfs', 'ohlcv', 'timeframes']),
+  ...mapGetters(['currentStrategy', 'strategies'])
 }
 </script>
